@@ -33,17 +33,16 @@ public class PositionController {
 
     @GetMapping
     public ResponseEntity<List<PositionDTO>> findAll() throws Exception {
+        List<EntityModel<PositionDTO>> resources;
         List<PositionDTO> lst = service.readAll().stream()
                 .map(obj -> (convertToDto(obj)))
                     .collect(Collectors.toList());
-        if(lst.isEmpty()){
-            return ResponseEntity.noContent().build();
+        for(PositionDTO dto : lst){
+            EntityModel<PositionDTO> resource = EntityModel.of(dto);
+            //localhost:8080/patients/1
+            WebMvcLinkBuilder link1 = WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).findById(dto.getIdPosition()));
+            resource.add(link1);
         }
-
-        for(PositionDTO dto: lst){
-            
-        }
-
 
 
     return new ResponseEntity<>(lst,HttpStatus.OK);

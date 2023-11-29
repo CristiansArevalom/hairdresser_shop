@@ -1,5 +1,7 @@
 package com.hairsalon.dto;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionDTO {
+public class PositionDTO extends RepresentationModel<PositionDTO>{
     private Integer idPosition;
     private String name;
     private Double salary;
