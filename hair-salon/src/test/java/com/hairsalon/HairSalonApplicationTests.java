@@ -1,10 +1,10 @@
-package com.carevalom.hairdresser;
+package com.hairsalon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HairdresserBackendApplicationTests {
+class HairSalonApplicationTests {
 
 	@Test
 	void contextLoads() {

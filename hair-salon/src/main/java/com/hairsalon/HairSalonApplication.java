@@ -1,13 +1,13 @@
-package com.carevalom.hairdresser;
+package com.hairsalon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HairdresserBackendApplication {
+public class HairSalonApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HairdresserBackendApplication.class, args);
+		SpringApplication.run(HairSalonApplication.class, args);
 	}
 
 }
