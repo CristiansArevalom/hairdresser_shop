@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import lombok.extern.slf4j.Slf4j;
+
 /*@RestControllerAdvice is the combination of both @ControllerAdvice and @ResponseBody: */
 
 /**
@@ -16,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
  * Captura las excepciones y devuelve una respuesta HTTP con un cuerpo de
  * respuesta personalizado.
  */
+@Slf4j
 @RestControllerAdvice
 public class ResponseExceptionHandler {
 
@@ -35,11 +38,12 @@ public class ResponseExceptionHandler {
                 "/errors/unknown-exception",
                 "Unhandled exception",
                 500,
-                ex.getMessage(),
+                ex.getClass()+": "+ex.getMessage(),
                 request.getDescription(false),
                 LocalDateTime.now());
         // Devolver una ResponseEntity con el objeto CustomErrorResponse y el código de
         // estado HTTP 500
+
         return new ResponseEntity<>(err, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

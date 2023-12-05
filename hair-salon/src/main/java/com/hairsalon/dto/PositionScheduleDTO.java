@@ -1,6 +1,8 @@
 package com.hairsalon.dto;
 
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionDTO{   
-    private Integer idPosition;
-    private String name;
-    private Double salary;
-    private boolean enabled;
+public class PositionScheduleDTO{   
+    private PositionDTO position;
+    private List<ScheduleDTO> lstSchedules;
+    private String day;
 }

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.yaml.snakeyaml.events.Event.ID;
 
 import com.hairsalon.exception.ModelNotFoundException;
+import com.hairsalon.model.Appointment;
 import com.hairsalon.repository.IGenericRepository;
 import com.hairsalon.service.ICRUD;
 
@@ -19,10 +20,9 @@ public abstract class CRUDImp<T,ID> implements ICRUD<T,ID>{
 
 
     @Override
-    public T save(T t) throws Exception {
-        this.getRepo().save(t);
+    public T save(T t){
+       return this.getRepo().save(t);
 
-        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
@@ -33,28 +33,23 @@ public abstract class CRUDImp<T,ID> implements ICRUD<T,ID>{
     }
 
     @Override
-    public List<T> readAll() throws Exception {
+    public List<T> readAll(){
         return getRepo().findAll();
     }
 
     @Override
-    public T readById(ID id) throws Exception {
+    public T readById(ID id){
         return getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("ID NOT FOUND " + id));
     }
 
     @Override
-    public void delete(ID id) throws Exception {
+    public void delete(ID id){
         getRepo().findById(id).orElseThrow(()-> new ModelNotFoundException("ID NOT FOUND: " + id));
         getRepo().deleteById(id);
     }
 
     @Override
-    public void disable(ID id) throws Exception {
-        getRepo().findById(id).orElseThrow(() -> new ModelNotFoundException("ID NOT FOUND "+ id));
-    }
-
-    @Override
-    public Page<T> getPage(Pageable pageable) throws Exception {
+    public Page<T> getPage(Pageable pageable){
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getPage'");
     }

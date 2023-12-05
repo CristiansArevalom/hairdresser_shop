@@ -9,6 +9,5 @@ durante la creación de beans, es decir que no se creé una implementación de l
 @NoRepositoryBean 
 public interface IGenericRepository<T,ID> extends JpaRepository<T,ID>{
 
-    T disable(ID id,String column);
     
 }

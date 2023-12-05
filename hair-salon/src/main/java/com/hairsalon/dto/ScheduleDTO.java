@@ -1,6 +1,9 @@
 package com.hairsalon.dto;
 
 
+
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionDTO{   
-    private Integer idPosition;
-    private String name;
-    private Double salary;
+public class ScheduleDTO{   
+    private Integer idSchedule;
+    private LocalDateTime startShift;
+    private LocalDateTime endShift;
     private boolean enabled;
 }

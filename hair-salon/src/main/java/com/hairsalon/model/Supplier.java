@@ -1,12 +1,12 @@
 package com.hairsalon.model;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,19 +17,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(uniqueConstraints = { @UniqueConstraint(name = "POSITION_NAME_UK", columnNames = { "name"}) })
-public class Position {
+
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer idPosition;
+    private Integer idSupplier;
 
-    @Column(name="name",nullable = false,length = 20,unique = true)
+    @Column(name="name",nullable = false,length = 100)
     private String name;
-    
-    @Column(name="salary",nullable = false,columnDefinition = "decimal(20,2)")
-    private Double salary;
+
+    @Column(name="address",nullable = false,length = 100)
+    private String address;
+
+
+    @Column(nullable = false,length = 9)
+    private String phone;
+
 
     @Column(name="enabled",nullable = false)
     private boolean enabled;
+    
 }

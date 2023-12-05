@@ -1,6 +1,7 @@
 package com.hairsalon.dto;
 
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +9,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionDTO{   
-    private Integer idPosition;
-    private String name;
-    private Double salary;
+public class ShelvingDTO{   
+    private Integer idShelving;
+    private String description;
     private boolean enabled;
 }

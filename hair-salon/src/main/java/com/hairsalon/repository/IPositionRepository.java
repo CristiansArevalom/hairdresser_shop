@@ -9,4 +9,5 @@ import com.hairsalon.model.Position;
 @Repository
 public interface IPositionRepository extends IGenericRepository<Position,Integer>{
     
+ 
 }

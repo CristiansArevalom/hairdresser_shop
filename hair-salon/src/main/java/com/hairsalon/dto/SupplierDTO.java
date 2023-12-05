@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionDTO{   
-    private Integer idPosition;
+
+public class SupplierDTO{   
+    private Integer idSupplier;
     private String name;
-    private Double salary;
+    private String address;
+     private String phone;
     private boolean enabled;
 }

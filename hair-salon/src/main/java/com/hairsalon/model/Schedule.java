@@ -1,5 +1,7 @@
 package com.hairsalon.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,19 +19,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-@Table(uniqueConstraints = { @UniqueConstraint(name = "POSITION_NAME_UK", columnNames = { "name"}) })
-public class Position {
+@Table(uniqueConstraints = { @UniqueConstraint(name = "CATEGORY_NAME_UK", columnNames = { "name"}) })
+public class Schedule {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer idPosition;
-
-    @Column(name="name",nullable = false,length = 20,unique = true)
-    private String name;
+    private Integer idSchedule;
     
-    @Column(name="salary",nullable = false,columnDefinition = "decimal(20,2)")
-    private Double salary;
+    @Column(name="start_shift",nullable = false)
+    private LocalDateTime startShift;
+    
+    @Column(name="end_shift",nullable = false)
+    private LocalDateTime endShift;
 
     @Column(name="enabled",nullable = false)
     private boolean enabled;
+
+
 }

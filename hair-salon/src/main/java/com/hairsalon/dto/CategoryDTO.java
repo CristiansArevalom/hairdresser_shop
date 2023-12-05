@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PositionDTO{   
-    private Integer idPosition;
+public class CategoryDTO{   
+    private Integer idCategory;
     private String name;
-    private Double salary;
+    private String description;
     private boolean enabled;
 }
