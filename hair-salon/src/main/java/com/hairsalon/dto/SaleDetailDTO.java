@@ -16,7 +16,6 @@ public class SaleDetailDTO{
     private Double totalPrice;
     private InventoryDTO inventory;
     private boolean enabled;
-    
     @JsonBackReference
     private SaleDTO sale;
 

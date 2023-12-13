@@ -1,6 +1,5 @@
 package com.hairsalon.service.impl;
 
-import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -9,6 +8,8 @@ import com.hairsalon.model.Inventory;
 import com.hairsalon.model.Order;
 import com.hairsalon.model.OrderDetail;
 import com.hairsalon.repository.IGenericRepository;
+import com.hairsalon.repository.IInventoryRepository;
+import com.hairsalon.repository.IOrderDetailRepository;
 import com.hairsalon.repository.IOrderRepository;
 import com.hairsalon.service.IOrderService;
 
@@ -19,33 +20,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderServiceImp extends CRUDImp<Order, Integer> implements IOrderService {
 
-    private final IOrderRepository repository;
+    private final IOrderRepository orderRepository;
+    private final IInventoryRepository invRepository;
+    private final IOrderDetailRepository orderDetailRepository;
 
     @Override
     protected IGenericRepository<Order, Integer> getRepo() {
-        return repository;
+        return orderRepository;
     }
 
             
 
     @Override
     public Order disable(Integer id) {
-        Order obj = repository.findById(id).orElseThrow(() -> new ModelNotFoundException("ID NOT FOUND: " + id));
+        Order obj = orderRepository.findById(id).orElseThrow(() -> new ModelNotFoundException("ID NOT FOUND: " + id));
         obj.setEnabled(false);
-        return repository.save(obj);
+        return orderRepository.save(obj);
     }
 
 
-
+    @Transactional
     @Override
-    public Order saveTransactional(Order order, List<Inventory> inventory) {
-        
+    public Order saveTransactional(Order order) {
+             order.setEnabled(true);
+             order.getDetails().forEach(detail -> detail.setEnabled(true));
+             Order savedOrder = orderRepository.save(order);
+             for (OrderDetail detail : order.getDetails()) {
+                 detail.setOrder(savedOrder);
+                 OrderDetail savedDetail = orderDetailRepository.save(detail);
+                 Inventory inventory = savedDetail.getInventory();
+                 inventory.setOrderDetail(savedDetail);
+                 invRepository.save(inventory);
+             }
+             return savedOrder;
+         }
+          
+     }
 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveTransactional'");
-    }
 
 
-  
-
-}
+    

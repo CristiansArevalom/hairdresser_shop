@@ -24,6 +24,8 @@ import com.hairsalon.model.Employee;
 import com.hairsalon.service.IEmployeeService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * Controlador que maneja las operaciones relacionadas con las posiciones.
@@ -61,6 +63,9 @@ public class EmployeeController {
 
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
+
+    
+    
 
     /**
      * Recupera un cargo por su identificador.

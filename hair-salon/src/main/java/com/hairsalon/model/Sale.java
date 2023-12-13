@@ -30,7 +30,7 @@ public class Sale {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer idSale;
 
-    @Column(name="date_appointment",nullable = false,length = 100)
+    @Column(name="date_sale",nullable = false,length = 100)
     private LocalDateTime dateSale;
 
     @Column(name="total_price",nullable = false,columnDefinition = "decimal(20,2)")

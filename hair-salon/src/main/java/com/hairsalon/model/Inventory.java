@@ -2,7 +2,6 @@ package com.hairsalon.model;
 
 import java.time.LocalDateTime;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -52,13 +51,15 @@ public class Inventory {
     @ManyToOne
     @JoinColumn(name = "id_shelving", nullable = false, foreignKey = @ForeignKey(name="INV_ID_SHELVING_FK"))
     private Shelving shelving;
-    
-    
-    @OneToOne
-    @JoinColumn(name = "id_order_detail", nullable = false, foreignKey = @ForeignKey(name="INV_ID_ORDERDETAIL_FK"))
-    private OrderDetail orderDetail;    
-
+      
     @Column(name="enabled",nullable = false)
     private boolean enabled;
-    
-}
+
+
+    @OneToOne()
+    @JoinColumn(name="id_order_detail",nullable = false)
+    private OrderDetail orderDetail;
+
+}   
+
+

@@ -6,6 +6,7 @@ import org.hibernate.annotations.Check;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Table(uniqueConstraints = { 
     @UniqueConstraint(name = "EMP_DOCUMENT_UK", columnNames = "document"),
     @UniqueConstraint(name = "EMP_EMAIL_UK", columnNames = "email"),
-    @UniqueConstraint(name = "EMP_GENDER_UK", columnNames = "gender")})
+    })
 
 public class Employee {
 
@@ -63,7 +64,7 @@ public class Employee {
     @Column(name="enabled",nullable = false)
     private boolean enabled;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_position", nullable = false, foreignKey = @ForeignKey(name="EMP_ID_POSITION_FK"))
     private Position position;
 

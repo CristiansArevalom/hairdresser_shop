@@ -23,6 +23,7 @@ import com.hairsalon.dto.TreatmentDTO;
 import com.hairsalon.model.Treatment;
 import com.hairsalon.service.ITreatmentService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -88,7 +89,7 @@ public class TreatmentController {
      * @throws Exception si ocurre algún error durante la operación de guardado.
      */
     @PostMapping
-    public ResponseEntity<EntityModel<TreatmentDTO>> save(@RequestBody TreatmentDTO dto) throws Exception {
+    public ResponseEntity<EntityModel<TreatmentDTO>> save(@Valid @RequestBody TreatmentDTO dto) throws Exception {
         Treatment obj = service.save(convertToEntity(dto));
         TreatmentDTO createdDto = convertToDto(obj);
         WebMvcLinkBuilder selfLink = WebMvcLinkBuilder
@@ -110,7 +111,7 @@ public class TreatmentController {
      *                   actualización.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<EntityModel<TreatmentDTO>> update(@RequestBody TreatmentDTO dto,
+    public ResponseEntity<EntityModel<TreatmentDTO>> update(@Valid @RequestBody TreatmentDTO dto,
             @PathVariable("id") Integer id)
             throws Exception {
         dto.setIdTreatment(id);

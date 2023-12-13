@@ -40,7 +40,7 @@ public class AppointmentServiceImp extends CRUDImp<Appointment, Integer> impleme
     public Appointment saveTransactional(Appointment appointment, List<Treatment> treatments){
         appointmentRepository.save(appointment);//Guardando maestro detalle
         treatments.forEach(treatment ->{
-        appointmentTreatmentRepository.saveTreatment(appointment.getIdAppointment(),treatment.getIdTreatment());
+        appointmentTreatmentRepository.saveTreatment(appointment.getIdAppointment(),treatment.getIdTreatment(),true);
         });
         return appointment;
     }

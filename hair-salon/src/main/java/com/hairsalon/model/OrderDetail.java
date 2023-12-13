@@ -1,8 +1,6 @@
 package com.hairsalon.model;
 
 
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,13 +33,9 @@ public class OrderDetail {
     @JoinColumn(name = "id_order", nullable = false, foreignKey = @ForeignKey(name="ORDERDETAIL_ID_ORDER_FK"))
     private Order order;
  
-    @ManyToOne
-    @JoinColumn(name = "id_product", nullable = false, foreignKey = @ForeignKey(name="ORDERDETAIL_ID_PRODUCT_FK"))
-    private Product product;
-
     @Column(name="enabled",nullable = false)
     private boolean enabled;
     
-    @OneToOne(mappedBy = "orderDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "orderDetail", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.EAGER)
     private Inventory inventory;
 }

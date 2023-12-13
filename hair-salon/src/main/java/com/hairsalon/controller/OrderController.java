@@ -20,16 +20,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hairsalon.dto.OrderDTO;
-import com.hairsalon.model.Inventory;
 import com.hairsalon.model.Order;
-import com.hairsalon.model.OrderDetail;
 import com.hairsalon.service.IOrderService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Controlador que maneja las operaciones relacionadas con las posiciones.
  */
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/orders")
 @RequiredArgsConstructor
@@ -91,7 +91,12 @@ public class OrderController {
      */
     @PostMapping
     public ResponseEntity<EntityModel<OrderDTO>> save(@RequestBody OrderDTO dto) throws Exception {
-        Order obj = service.save(convertToEntity(dto));
+        //Order obj = service.save(convertToEntity(dto));
+        Order obj = convertToEntity(dto);
+        
+       service.saveTransactional(obj);
+       //service.save(obj);
+        
         OrderDTO createdDto = convertToDto(obj);
         WebMvcLinkBuilder selfLink = WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder.methodOn(this.getClass()).findById(createdDto.getIdOrder()));

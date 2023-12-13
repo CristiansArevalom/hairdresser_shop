@@ -7,7 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.yaml.snakeyaml.events.Event.ID;
 
 import com.hairsalon.exception.ModelNotFoundException;
-import com.hairsalon.model.Appointment;
 import com.hairsalon.repository.IGenericRepository;
 import com.hairsalon.service.ICRUD;
 

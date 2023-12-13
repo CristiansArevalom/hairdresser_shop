@@ -4,4 +4,5 @@ import com.hairsalon.model.Sale;
 
 public interface ISaleService extends ICRUD<Sale,Integer>{
     
+    Sale saveSaleTransactional(Sale sale);
 }

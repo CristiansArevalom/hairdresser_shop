@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 public class OrderDetailDTO{   
 
     private Integer idOrderDetail;
+    
     @JsonBackReference
     private OrderDTO order;
-    
-    private ProductDTO product;
+
     private boolean enabled;
 
     private InventoryDTO inventory;

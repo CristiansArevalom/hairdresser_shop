@@ -1,8 +1,10 @@
 package com.hairsalon.model;
 
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,15 +32,15 @@ public class SaleDetail {
     @Column(name="selling_price",nullable = false,columnDefinition = "decimal(20,2)")
     private Double totalPrice;
 
-    @OneToOne
-    @JoinColumn(name = "barcode", nullable = false, foreignKey = @ForeignKey(name="DETSALE_INV_BARCODE_FK"))
-    private Inventory inventory;
-
     @ManyToOne
     @JoinColumn(name = "id_sale", nullable = false, foreignKey = @ForeignKey(name="SALE_ID_SALE_FK"))
     private Sale sale;    
 
     @Column(name="enabled",nullable = false)
     private boolean enabled;
+        
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="barcode")
+    private Inventory inventory;
     
 }
